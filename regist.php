@@ -1,11 +1,14 @@
 <?php
     require 'koneksi.php';
+    require 'config.php';
     if(isset($_POST["submit"])){
         $userName = $_POST["inputUsername"];
         $userPw = $_POST["inputPassword"];
         $userEmail = $_POST["inputEmail"];
+        $wpjson = JsonWeapon(1,1,1,1,1,1);
+        $playerjson = JsonPlayer(1,1,1,1);
         $sql = "INSERT INTO `users` VALUES ('$userName', '$userPw','$userEmail')";
-        $sql2 = "INSERT INTO `userdata` VALUES ('', '$userName','1000', '1')";
+        $sql2 = "INSERT INTO `userdata` VALUES ('', '$userName','1000', '1', '$wpjson', '$playerjson')";
         mysqli_query($conn,$sql);
         mysqli_query($conn,$sql2);
         header('location:index.php');
